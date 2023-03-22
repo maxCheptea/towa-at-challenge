@@ -121,15 +121,8 @@ export default function StarShipsTable({ starShips }: IStarShipsTable) {
                   onChange={handleFilterChange}
                 />
               </TableCell>
-              <TableCell component='th' scope='row' align='left'>
-                <TextField
-                  id='passengers-filter'
-                  label='Filter by passengers'
-                  variant='standard'
-                  name='cargoCapacity'
-                  onChange={handleFilterChange}
-                />
-              </TableCell>
+              <TableCell component='th' scope='row' align='left'></TableCell>
+              <TableCell component='th' scope='row' align='left'></TableCell>
               <TableCell component='th' scope='row' align='left'></TableCell>
             </TableRow>
             {stableSort(
