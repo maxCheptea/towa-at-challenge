@@ -94,6 +94,8 @@ const textFilter = (text: string, criteria: string) => {
 }
 
 const numberFilter = (number: number, criteria: number, comparator: '=' | '>' | '<') => {
+  // console.log(number, criteria, comparator);
+  if (isNaN(number)) return true;
   switch (comparator) {
     case '>':
       return number > criteria;
@@ -114,25 +116,20 @@ const getFilterComparator = (value: string) => {
 
 const getNumber = (value: string) => {
   const criteria = value.split(' ');
-  if (criteria.length === 1) return parseFloat(criteria[0]);
-  if (criteria.length === 2) return parseFloat(criteria[1]);
+
+  if (criteria.length === 1) return parseInt(criteria[0]);
+  if (criteria.length === 2) return parseInt(criteria[1]);
 
   return 0;
 }
 
 export const filterShips = (ships: StarShipModel[], filters: Filters) => {
   const keys = Object.keys(filters);
-  // console.log(filters, ships);
+
   return ships.filter((ship) => {
     const status = keys.every(key => {
       // @ts-ignore
-      console.log('dddd', filters[key]);
-      // @ts-ignore
       if (!filters[key]) return true;
-      // @ts-ignore
-      console.log(getNumber(filters[key]));
-      // @ts-ignore
-      console.log(getFilterComparator(filters[key]))
       // @ts-ignore
       if (typeof ship[key] === 'string') return textFilter(ship[key], filters[key]);
       // @ts-ignore
